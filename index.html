@@ -27,21 +27,23 @@
             width: 95%;
             max-width: 1000px;
             text-align: center;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         h1 {
+            flex: 0 0 auto;
             font-size: 3rem;
-            margin-bottom: 40px;
             color: #333;
+            margin-bottom: 10px;
         }
 
         .button {
             width: 100%;
-            padding: 60px;
-            margin-bottom: 30px;
             border: none;
             border-radius: 24px;
-            font-size: 3rem;
             font-weight: 700;
             color: white;
             cursor: pointer;
@@ -52,12 +54,26 @@
             transform: scale(.98);
         }
 
+        /* 45% */
         .selecciones {
+            flex: 4;
             background: #1976D2;
+            font-size: 3rem;
         }
 
+        /* 45% */
         .cotton {
+            flex: 4;
             background: #2E7D32;
+            font-size: 3rem;
+        }
+
+        /* 10% */
+        .secondary {
+            display: none;
+            flex: 2;
+            background: #757575;
+            font-size: 1.4rem;
         }
     </style>
 </head>
@@ -68,12 +84,18 @@
 
         <h1>CONTROL HORARIO</h1>
 
-        <button class="button selecciones" onclick="goToSite('https://timenet-cp.gpisoftware.com/check/5d97be36-3063-4b75-a325-1c0117447566')">
+        <button class="button selecciones"
+            onclick="goToSite('https://timenet-cp.gpisoftware.com/check/5d97be36-3063-4b75-a325-1c0117447566')">
             SELECCIONES
         </button>
 
-        <button class="button cotton" onclick="goToSite('https://timenet-mcp.gpisoftware.com/08008c0d-edc1-4bf3-b552-a623ac86341d')">
+        <button class="button cotton"
+            onclick="goToSite('https://timenet-mcp.gpisoftware.com/08008c0d-edc1-4bf3-b552-a623ac86341d')">
             COTTON PROJECT
+        </button>
+
+        <button id="mallol" class="button secondary" onclick="goToSite('https://URL-TERCERA')">
+            EL MALLOL HABITAT
         </button>
 
     </div>
@@ -83,6 +105,12 @@
         function goToSite(url) {
             sessionStorage.setItem("lastVisit", Date.now());
             window.location.href = url;
+        }
+
+        const params = new URLSearchParams(window.location.search);
+
+        if (params.get('extra') === 'true') {
+            document.getElementById('mallol').style.display = 'block';
         }
 
     </script>
