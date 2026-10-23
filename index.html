@@ -70,10 +70,13 @@
 
         /* 10% */
         .secondary {
-            display: none;
             flex: 2;
             background: #757575;
             font-size: 1.4rem;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -94,7 +97,7 @@
             COTTON PROJECT
         </button>
 
-        <button id="mallol" class="button secondary" onclick="goToSite('https://URL-TERCERA')">
+        <button id="mallol" class="button secondary hidden" onclick="goToSite('https://URL-TERCERA')">
             EL MALLOL HABITAT
         </button>
 
@@ -110,7 +113,7 @@
         const params = new URLSearchParams(window.location.search);
 
         if (params.get('extra') === 'true') {
-            document.getElementById('mallol').style.display = 'block';
+            document.getElementById('mallol').classList.remove('hidden');
         }
 
     </script>
