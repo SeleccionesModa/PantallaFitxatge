@@ -56,27 +56,38 @@
 
         /* 45% */
         .selecciones {
-            flex: 4;
+            flex: 3;
             background: #1976D2;
             font-size: 3rem;
         }
 
         /* 45% */
         .cotton {
-            flex: 4;
+            flex: 3;
             background: #2E7D32;
             font-size: 3rem;
         }
 
         /* 10% */
         .secondary {
-            flex: 2;
+            flex: 3;
             background: #757575;
-            font-size: 1.4rem;
+            font-size: 3rem;
         }
 
         .hidden {
             display: none;
+        }
+
+        #clock-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #clock {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #333;
         }
     </style>
 </head>
@@ -85,7 +96,9 @@
 
     <div class="container">
 
-        <h1>CONTROL HORARIO</h1>
+        <div id="clock-container">
+            <div id="clock"></div>
+        </div>
 
         <button class="button selecciones"
             onclick="goToSite('https://timenet-cp.gpisoftware.com/check/5d97be36-3063-4b75-a325-1c0117447566')">
@@ -97,7 +110,8 @@
             COTTON PROJECT
         </button>
 
-        <button id="mallol" class="button secondary hidden" onclick="goToSite('https://timenet-mcp.gpisoftware.com/504e1e95-a58a-4662-86b3-fa075c439e74')">
+        <button id="mallol" class="button secondary hidden"
+            onclick="goToSite('https://timenet-mcp.gpisoftware.com/504e1e95-a58a-4662-86b3-fa075c439e74')">
             EL MALLOL HABITAT
         </button>
 
@@ -115,6 +129,23 @@
         if (params.get('extra') === 'true') {
             document.getElementById('mallol').classList.remove('hidden');
         }
+
+        function updateClock() {
+            const now = new Date();
+
+            const madridTime = new Intl.DateTimeFormat('es-ES', {
+                timeZone: 'Europe/Madrid',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            }).format(now);
+
+            document.getElementById('clock').textContent = madridTime;
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
 
     </script>
 
